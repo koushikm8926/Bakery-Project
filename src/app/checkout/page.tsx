@@ -24,6 +24,16 @@ import {
 } from "lucide-react";
 import { useCart, Order } from "@/context/CartContext";
 import { FeatureStrip } from "@/components/layout/FeatureStrip";
+import {
+  GPayBadge,
+  PhonePeBadge,
+  PaytmBadge,
+  VisaBadge,
+  MastercardBadge,
+  RuPayBadge,
+  AmazonPayBadge,
+  MobiKwikBadge,
+} from "@/components/ui/BrandIcons";
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -346,12 +356,10 @@ export default function CheckoutPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1.5 text-[10px] font-bold bg-white px-2 py-1 rounded border border-[#EADBCE]">
-                    <span className="text-emerald-600">GPay</span>
-                    <span>&bull;</span>
-                    <span className="text-purple-600">PhonePe</span>
-                    <span>&bull;</span>
-                    <span className="text-sky-600">Paytm</span>
+                  <div className="flex items-center gap-2">
+                    <GPayBadge />
+                    <PhonePeBadge />
+                    <PaytmBadge />
                   </div>
                 </label>
 
@@ -378,10 +386,10 @@ export default function CheckoutPage() {
                       <p className="text-[11px] text-[#8C7A6B]">Visa, Mastercard, RuPay, Amex</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1.5 text-[10px] font-bold bg-white px-2 py-1 rounded border border-[#EADBCE]">
-                    <span className="text-blue-600">VISA</span>
-                    <span>&bull;</span>
-                    <span className="text-red-600">Mastercard</span>
+                  <div className="flex items-center gap-2.5 bg-white px-2.5 py-1 rounded border border-[#EADBCE]">
+                    <VisaBadge />
+                    <MastercardBadge />
+                    <RuPayBadge />
                   </div>
                 </label>
 
@@ -432,6 +440,11 @@ export default function CheckoutPage() {
                       <h4 className="font-bold text-xs text-[#2B170B]">Wallets</h4>
                       <p className="text-[11px] text-[#8C7A6B]">Amazon Pay, Mobikwik &amp; more</p>
                     </div>
+                  </div>
+                  <div className="flex items-center gap-2 bg-white px-2.5 py-1 rounded border border-[#EADBCE]">
+                    <AmazonPayBadge />
+                    <span>&bull;</span>
+                    <MobiKwikBadge />
                   </div>
                 </label>
               </div>
