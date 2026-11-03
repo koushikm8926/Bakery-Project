@@ -1,0 +1,6 @@
+# Exclude raw design mockups and local assets from Vercel deployments
+UI/
+.git/
+.next/
+node_modules/
+.DS_Store
