@@ -290,45 +290,52 @@ export default function HomePage() {
 
       {/* 6. SPECIAL PROMO BANNER: BAKERY GIFT BOXES */}
       <section className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#291106] via-[#3B190B] to-[#250E05] text-white p-8 md:p-12 shadow-2xl border border-[#522513]">
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#240D04] via-[#351508] to-[#200B03] text-white p-6 sm:p-8 md:p-12 shadow-2xl border border-[#4E2413]">
+          {/* Subtle golden ambient background glow */}
+          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-[#E58B23]/10 rounded-full blur-3xl pointer-events-none"></div>
+
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            {/* Box Image */}
-            <div className="md:col-span-5 flex justify-center">
-              <div className="relative w-64 md:w-80 aspect-4/3 rounded-2xl overflow-hidden shadow-2xl border-2 border-[#D97706]/40">
+            {/* Box Image - seamlessly styled without harsh borders */}
+            <div className="md:col-span-6 flex justify-center md:justify-start">
+              <div className="relative w-full max-w-md aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl transition-transform duration-500 hover:scale-102">
                 <img
                   src="/images/products/bakery-gift-box.jpg"
-                  alt="Bakery Gift Box"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  alt="Sandton Bakery Curated Gift Box"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
 
-            {/* Content */}
-            <div className="md:col-span-7 space-y-4 text-center md:text-left">
-              <span className="text-[11px] font-bold tracking-widest uppercase text-[#F5B041] bg-[#4E2413] px-3 py-1 rounded-full border border-[#D97706]/30">
-                Special Offer
-              </span>
-
-              <h3 className="font-serif text-3xl sm:text-4xl font-bold text-[#FFF8EE]">
-                Bakery Gift Boxes
-              </h3>
-
-              <p className="text-sm sm:text-base text-[#D8C7B8] max-w-md">
-                A perfect treat for every celebration. Curated assortments of French macarons,
-                fresh butter cookies, and artisan confectionery.
-              </p>
-
-              <div className="inline-block bg-[#8B1E2D] text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow-md">
-                Up to 15% Off
+            {/* Content - matching UI mockup */}
+            <div className="md:col-span-6 space-y-4 text-center md:text-left">
+              <div>
+                <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#F5B041]">
+                  Special Offer
+                </span>
+                <h3 className="font-serif italic text-3xl sm:text-4xl lg:text-5xl font-bold text-[#FFF8EE] mt-1 leading-tight">
+                  Bakery Gift Boxes
+                </h3>
+                <p className="text-xs sm:text-sm text-[#D8C7B8] font-light mt-2 max-w-md">
+                  A perfect treat for every celebration. Curated assortments of French macarons,
+                  fresh butter cookies, and artisan confectionery.
+                </p>
               </div>
 
+              {/* Red Ribbon Pill */}
+              <div className="pt-1">
+                <div className="inline-flex items-center justify-center bg-[#8B1E2D] text-white font-bold text-xs uppercase tracking-wider px-6 py-2 rounded-md shadow-lg border border-[#A52838]">
+                  Up to 15% Off
+                </div>
+              </div>
+
+              {/* Action Button - Gold bordered pill */}
               <div className="pt-2">
                 <Link
                   href="/shop?category=bakery-items"
-                  className="inline-flex items-center gap-2 bg-[#FAF6EE] text-[#2B170B] hover:bg-white text-xs font-bold px-6 py-3 rounded-full transition-all shadow-md hover:gap-3"
+                  className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full border-2 border-[#E58B23] bg-transparent hover:bg-[#E58B23] text-[#FBBF24] hover:text-[#240D04] font-bold text-xs transition-all shadow-md active:scale-95 group"
                 >
                   <span>Shop Gift Boxes</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
             </div>
