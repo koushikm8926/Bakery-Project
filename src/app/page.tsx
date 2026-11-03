@@ -79,74 +79,134 @@ export default function HomePage() {
   return (
     <div className="space-y-16 pb-16">
       {/* 1. HERO SECTION */}
-      <section className="relative bg-gradient-to-br from-[#2D1208] via-[#3D1A0D] to-[#250F06] text-white overflow-hidden py-14 md:py-20">
-        {/* Subtle background glow */}
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#D97706]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <section className="relative bg-[#200C06] text-white overflow-hidden pt-12 pb-20 md:pt-16 md:pb-24">
+        {/* Ambient atmospheric backdrop */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Subtle blurred bakery backdrop texture */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-15 mix-blend-luminosity filter blur-[1px] scale-105"
+            style={{ backgroundImage: `url('/images/banners/hero-banner-luxury.jpg')` }}
+          />
+          {/* Dark gradient overlay for text readability and depth */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#200C06] via-[#200C06]/92 to-[#200C06]/65" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#200C06] via-transparent to-[#200C06]/70" />
 
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Warm Amber Glowing Orbs */}
+          <div className="absolute top-1/4 right-1/4 w-[480px] h-[480px] bg-gradient-to-br from-[#E58B23]/25 via-[#D97706]/15 to-transparent rounded-full blur-3xl" />
+          <div className="absolute -bottom-10 left-1/3 w-[360px] h-[360px] bg-[#8B1E2D]/20 rounded-full blur-3xl" />
+          
+          {/* Golden bokeh dots overlay */}
+          <div className="absolute top-16 right-1/3 w-3 h-3 rounded-full bg-[#FBBF24]/40 blur-[1px]" />
+          <div className="absolute top-1/3 right-12 w-2 h-2 rounded-full bg-[#E58B23]/50 blur-[0.5px]" />
+          <div className="absolute bottom-20 right-1/4 w-4 h-4 rounded-full bg-[#FBBF24]/30 blur-[2px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             {/* Left Content */}
-            <div className="lg:col-span-7 space-y-6 z-10 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E58B23]/20 border border-[#E58B23]/40 text-[#F5B041] text-xs font-semibold tracking-wider uppercase">
-                <Sparkles className="w-3.5 h-3.5" />
-                Handcrafted With Passion
+            <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E58B23]/15 border border-[#E58B23]/35 text-[#F5B041] text-xs font-semibold tracking-wider uppercase backdrop-blur-md shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-[#FBBF24]" />
+                <span>Handcrafted With Passion</span>
               </div>
 
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-[#FFF8EE]">
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.8rem] font-bold leading-[1.12] tracking-tight text-[#FFF8EE]">
                 Freshly Baked <br />
-                <span className="text-[#FBBF24] italic font-normal">Happiness</span> for Every Occasion
+                <span className="text-[#FBBF24] italic font-normal font-serif">Happiness</span> for Every Occasion
               </h1>
 
-              {/* Heart Flourish */}
+              {/* Heart & Filigree Flourish */}
               <div className="flex items-center justify-center lg:justify-start gap-3">
-                <div className="h-px w-12 bg-[#D97706]/60"></div>
-                <Heart className="w-4 h-4 text-[#E58B23] fill-[#E58B23]/40" />
-                <div className="h-px w-12 bg-[#D97706]/60"></div>
+                <div className="h-[1.5px] w-14 bg-gradient-to-r from-transparent via-[#E58B23] to-[#D97706]"></div>
+                <Heart className="w-4 h-4 text-[#F5B041] fill-[#E58B23]" />
+                <div className="h-[1.5px] w-14 bg-gradient-to-l from-transparent via-[#E58B23] to-[#D97706]"></div>
               </div>
 
               <p className="text-base sm:text-lg text-[#E8DCD0] max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
-                Indulgent cakes, irresistible pastries, wholesome breads and more — crafted with
-                premium ingredients, care, and a passion for baking.
+                Indulgent celebration cakes, flaky artisanal pastries, wholesome sourdough breads, and handcrafted treats — baked daily with pure Belgian cocoa, European butter, and boundless love.
               </p>
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
                 <Link
                   href="/shop"
-                  className="bg-[#8B1E2D] hover:bg-[#6E1422] text-white font-semibold text-sm px-7 py-3.5 rounded-full flex items-center gap-2.5 transition-all shadow-lg hover:shadow-red-950/40 hover:-translate-y-0.5 active:translate-y-0"
+                  className="group bg-[#8B1E2D] hover:bg-[#A32235] text-white font-semibold text-sm sm:text-base px-8 py-3.5 rounded-full flex items-center gap-2.5 transition-all duration-300 shadow-xl shadow-red-950/40 hover:shadow-red-900/60 hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <span>Shop Now</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
 
                 <Link
                   href="/shop"
-                  className="bg-[#FFFDF9] hover:bg-[#FAF5EE] text-[#3A1407] font-semibold text-sm px-6 py-3.5 rounded-full transition-all border border-[#F0E5D8] hover:shadow-md"
+                  className="bg-[#FFFDF9] hover:bg-[#FAF5EE] text-[#3A1407] font-semibold text-sm sm:text-base px-7 py-3.5 rounded-full transition-all duration-300 border border-[#F0E5D8] hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
                 >
                   Explore Categories
                 </Link>
               </div>
+
+              {/* Quick Trust Highlights */}
+              <div className="pt-6 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-[#D8C7B8] border-t border-[#4A2011]/60">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
+                  <span>Baked Fresh Every 4 Hours</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Truck className="w-3.5 h-3.5 text-[#FBBF24]" />
+                  <span>Same-Day Delivery</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Award className="w-3.5 h-3.5 text-[#FBBF24]" />
+                  <span>100% Eggless Available</span>
+                </div>
+              </div>
             </div>
 
-            {/* Right Hero Image */}
-            <div className="lg:col-span-5 relative flex justify-center">
-              <div className="relative w-80 sm:w-96 lg:w-[440px] aspect-square">
-                {/* Golden pedestal glow ring */}
-                <div className="absolute inset-0 rounded-full border-2 border-[#E58B23]/30 scale-105 animate-pulse"></div>
+            {/* Right Hero Visual */}
+            <div className="lg:col-span-5 relative flex justify-center items-center">
+              {/* Golden Ambient Glow Halo */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-[#D97706]/30 via-[#F59E0B]/20 to-[#8B1E2D]/20 rounded-full blur-3xl pointer-events-none scale-110" />
 
-                <div className="w-full h-full rounded-3xl overflow-hidden shadow-2xl border-4 border-[#5E2B18] relative group">
-                  <img
-                    src="/images/products/hero-cake.jpg"
-                    alt="Showstopper Chocolate Truffle Cake"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  {/* Floating Freshness Badge */}
-                  <div className="absolute bottom-4 right-4 bg-[#261006]/90 backdrop-blur-md text-white border border-[#E58B23]/50 px-3 py-1.5 rounded-xl flex items-center gap-2 shadow-lg">
-                    <Sparkles className="w-4 h-4 text-[#E58B23]" />
-                    <div className="text-left">
-                      <p className="text-[10px] text-[#D8C7B8] leading-tight">Fresh Today</p>
-                      <p className="text-xs font-bold text-[#FBBF24]">Belgian Truffle Cake</p>
+              {/* Concentric Decorative Rings */}
+              <div className="absolute -inset-2 sm:-inset-4 rounded-full border border-[#E58B23]/25 scale-105 pointer-events-none" />
+              <div className="absolute -inset-6 sm:-inset-8 rounded-full border border-dashed border-[#E58B23]/15 scale-110 pointer-events-none animate-spin-slow" />
+
+              {/* The Hero Cake Showcase Card */}
+              <div className="relative w-80 sm:w-96 lg:w-[440px] aspect-square rounded-3xl overflow-hidden shadow-[0_30px_70px_-15px_rgba(0,0,0,0.8)] border border-[#E58B23]/35 bg-gradient-to-b from-[#351508] to-[#180803] group">
+                <img
+                  src="/images/products/hero-cake-luxury-square.jpg"
+                  alt="Showstopper Belgian Chocolate Truffle Cake on Golden Stand"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+
+                {/* Subtle vignette for artistic depth */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1A0A04]/90 via-transparent to-black/20 pointer-events-none" />
+
+                {/* Floating Rating Badge (Top-Left) */}
+                <div className="absolute top-4 left-4 bg-[#1F0C05]/85 backdrop-blur-md border border-[#E58B23]/40 px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg">
+                  <div className="flex items-center text-[#FBBF24]">
+                    <Star className="w-3.5 h-3.5 fill-[#FBBF24]" />
+                  </div>
+                  <span className="text-xs font-bold text-white tracking-wide">4.9</span>
+                  <span className="text-[11px] text-[#D8C7B8]">• 2,400+ Reviews</span>
+                </div>
+
+                {/* Floating Signature Badge (Bottom) */}
+                <div className="absolute bottom-4 left-4 right-4 bg-[#1F0C05]/92 backdrop-blur-md border border-[#E58B23]/40 p-3.5 rounded-2xl flex items-center justify-between shadow-2xl">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#E58B23] to-[#8B1E2D] flex items-center justify-center shadow-md shrink-0">
+                      <Cake className="w-5 h-5 text-white" />
                     </div>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        <p className="text-[10px] uppercase font-semibold text-[#F5B041] tracking-wider truncate">Chef&apos;s Signature</p>
+                      </div>
+                      <p className="text-sm font-bold text-white font-serif truncate">Belgian Truffle Drip Cake</p>
+                    </div>
+                  </div>
+                  <div className="text-right pl-3 border-l border-[#4A2011] shrink-0">
+                    <p className="text-[10px] text-[#D8C7B8]">From</p>
+                    <p className="text-sm font-bold text-[#FBBF24]">R 380</p>
                   </div>
                 </div>
               </div>
