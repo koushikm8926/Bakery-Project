@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { PRODUCTS, CATEGORIES } from "@/data/products";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { AutoScrollingReviews } from "@/components/home/AutoScrollingReviews";
 
 export default function HomePage() {
   const [newsletterEmail, setNewsletterEmail] = useState("");
@@ -544,41 +545,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 11. WHAT OUR CUSTOMERS SAY */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="text-center space-y-2 mb-10">
-          <div className="flex items-center justify-center gap-3">
-            <Wheat className="w-5 h-5 text-[#D97706]" />
-            <h2 className="font-serif text-3xl font-bold text-[#2B170B]">
-              What Our Customers Say
-            </h2>
-            <Wheat className="w-5 h-5 text-[#D97706] scale-x-[-1]" />
-          </div>
-          <p className="text-sm text-[#8C7A6B]">
-            Real experiences from our happy bakery lovers
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-2xl p-6 border border-[#F0E5D8] shadow-sm hover:shadow-md transition-shadow relative"
-            >
-              <div className="text-4xl text-[#E58B23] font-serif leading-none mb-3">“</div>
-              <p className="text-xs sm:text-sm text-[#4A2D1B] leading-relaxed italic mb-4">
-                {t.quote}
-              </p>
-              <div className="flex items-center gap-1 text-[#D97706] mb-2">
-                {[...Array(t.rating)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-[#D97706]" />
-                ))}
-              </div>
-              <p className="font-serif font-bold text-xs text-[#2B170B]">{t.author}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* 11. WHAT OUR CUSTOMERS SAY (AUTO-SCROLLING TICKER) */}
+      <AutoScrollingReviews />
 
       {/* 12. A PEEK INTO OUR BAKERY (INSTAGRAM GALLERY) */}
       <section className="max-w-7xl mx-auto px-4 md:px-8">
