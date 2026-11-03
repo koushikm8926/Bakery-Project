@@ -1,5 +1,9 @@
-# Exclude raw design mockups and local assets from Vercel deployments
-UI/
+# Ignore heavy raw png mockups
+UI/*.png
+
+# Explicitly include src components
+!src/components/ui/**
+
 .git/
 .next/
 node_modules/
