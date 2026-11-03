@@ -112,3 +112,4 @@ export function ProductCard({ product, showBadge }: ProductCardProps) {
     </div>
   );
 }
+

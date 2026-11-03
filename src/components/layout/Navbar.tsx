@@ -37,10 +37,10 @@ export function Navbar() {
     { name: "Shop", href: "/shop" },
     { name: "Cakes", href: "/shop?category=cakes" },
     { name: "Pastries", href: "/shop?category=pastries" },
-    { name: "Bakery Items", href: "/shop?category=bakery-items" },
-    { name: "Beverages", href: "/shop?category=beverages" },
-    { name: "Offers", href: "/shop?offers=true" },
-    { name: "About Us", href: "/#story" },
+    { name: "Custom Cakes", href: "/custom-cake" },
+    { name: "Track Order", href: "/track-order" },
+    { name: "About Us", href: "/about" },
+    { name: "FAQs", href: "/faqs" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -122,7 +122,7 @@ export function Navbar() {
 
           {/* Wishlist */}
           <Link
-            href="/account#wishlist"
+            href="/wishlist"
             className="relative p-2 rounded-full hover:bg-[#FAF5EE] hover:text-[#C2410C] transition-colors"
             title="Wishlist"
           >
@@ -221,3 +221,4 @@ export function Navbar() {
     </header>
   );
 }
+

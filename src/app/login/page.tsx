@@ -8,26 +8,34 @@ import {
   Lock,
   Eye,
   EyeOff,
-  ShoppingBag,
   Sparkles,
   Truck,
   ShieldCheck,
-  Check,
+  ArrowRight,
+  AlertCircle,
 } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
+import { useCart } from "@/context/CartContext";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
+  const { showToast } = useCart();
+
   const [identifier, setIdentifier] = useState("saikumar@gmail.com");
   const [password, setPassword] = useState("••••••••");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate successful login and route to user account
-    router.push("/account");
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      showToast("Welcome back, Sai Kumar!");
+      router.push("/account");
+    }, 600);
   };
 
   return (
@@ -92,41 +100,28 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN: LOGIN / SIGNUP FORM */}
+        {/* RIGHT COLUMN: LOGIN FORM */}
         <div className="lg:col-span-7 p-8 md:p-12 flex flex-col justify-center">
-          {/* Tabs: Sign In / Sign Up */}
+          {/* Sign In / Sign Up switcher pills */}
           <div className="flex rounded-2xl bg-[#FAF5EE] p-1.5 border border-[#EADBCE] max-w-sm mb-8">
-            <button
-              onClick={() => setMode("signin")}
-              className={`flex-1 py-2.5 text-xs font-bold rounded-xl transition-all ${
-                mode === "signin"
-                  ? "bg-[#3A1407] text-white shadow-sm"
-                  : "text-[#8C7A6B] hover:text-[#2B170B]"
-              }`}
-            >
+            <div className="flex-1 py-2.5 text-xs font-bold rounded-xl bg-[#3A1407] text-white shadow-sm text-center">
               Sign In
-            </button>
-            <button
-              onClick={() => setMode("signup")}
-              className={`flex-1 py-2.5 text-xs font-bold rounded-xl transition-all ${
-                mode === "signup"
-                  ? "bg-[#3A1407] text-white shadow-sm"
-                  : "text-[#8C7A6B] hover:text-[#2B170B]"
-              }`}
+            </div>
+            <Link
+              href="/register"
+              className="flex-1 py-2.5 text-xs font-bold rounded-xl text-[#8C7A6B] hover:text-[#2B170B] text-center transition-colors"
             >
               Sign Up
-            </button>
+            </Link>
           </div>
 
           <div className="space-y-6 max-w-md">
             <div>
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2B170B]">
-                {mode === "signin" ? "Welcome Back!" : "Create an Account"}
+                Welcome Back!
               </h3>
               <p className="text-xs text-[#8C7A6B] mt-1">
-                {mode === "signin"
-                  ? "Sign in to your Sandton Bakery account to track orders & save treats."
-                  : "Join Sandton Bakery for exclusive rewards and fast express checkout."}
+                Sign in to your Sandton Bakery account to track orders &amp; save treats.
               </p>
             </div>
 
@@ -186,17 +181,22 @@ export default function LoginPage() {
                   <span>Remember me</span>
                 </label>
 
-                <a href="#" className="font-semibold text-[#8B1E2D] hover:underline">
+                <Link
+                  href="/forgot-password"
+                  className="font-bold text-[#8B1E2D] hover:underline"
+                >
                   Forgot Password?
-                </a>
+                </Link>
               </div>
 
               {/* Submit CTA */}
               <button
                 type="submit"
-                className="w-full bg-[#3A1407] hover:bg-[#250D04] text-white font-bold text-sm py-3.5 rounded-xl shadow-md transition-all active:scale-98"
+                disabled={loading}
+                className="w-full bg-[#3A1407] hover:bg-[#250D04] disabled:opacity-60 text-white font-bold text-sm py-3.5 rounded-xl shadow-md transition-all active:scale-98 flex items-center justify-center gap-2"
               >
-                {mode === "signin" ? "Sign In" : "Create Account"}
+                <span>{loading ? "Signing In..." : "Sign In"}</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
             </form>
 
@@ -248,29 +248,12 @@ export default function LoginPage() {
               </button>
             </div>
 
-            {/* Bottom Toggle */}
+            {/* Bottom Link */}
             <p className="text-center text-xs text-[#8C7A6B]">
-              {mode === "signin" ? (
-                <>
-                  Don&apos;t have an account?{" "}
-                  <button
-                    onClick={() => setMode("signup")}
-                    className="font-bold text-[#8B1E2D] hover:underline"
-                  >
-                    Sign Up
-                  </button>
-                </>
-              ) : (
-                <>
-                  Already have an account?{" "}
-                  <button
-                    onClick={() => setMode("signin")}
-                    className="font-bold text-[#8B1E2D] hover:underline"
-                  >
-                    Sign In
-                  </button>
-                </>
-              )}
+              Don&apos;t have an account?{" "}
+              <Link href="/register" className="font-bold text-[#8B1E2D] hover:underline">
+                Create Account
+              </Link>
             </p>
           </div>
         </div>

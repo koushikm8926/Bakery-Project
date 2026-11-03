@@ -650,3 +650,4 @@ export function ProductDetailView({ product }: { product: Product }) {
     </div>
   );
 }
+

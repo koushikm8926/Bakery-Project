@@ -47,3 +47,4 @@ export function Logo({ className = "", size = "md" }: LogoProps) {
     </Link>
   );
 }
+

@@ -118,8 +118,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#story" className="hover:text-[#E58B23] transition-colors">
-                  Our Story
+                <Link href="/about" className="hover:text-[#E58B23] transition-colors">
+                  Our Story &amp; Heritage
+                </Link>
+              </li>
+              <li>
+                <Link href="/custom-cake" className="hover:text-[#E58B23] transition-colors">
+                  Custom Cakes
                 </Link>
               </li>
             </ul>
@@ -137,23 +142,18 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/account" className="hover:text-[#E58B23] transition-colors">
+                <Link href="/track-order" className="hover:text-[#E58B23] transition-colors">
                   Track Order
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-[#E58B23] transition-colors">
-                  Shipping & Delivery
+                  Shipping &amp; Delivery
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#E58B23] transition-colors">
-                  Cancellation & Refund
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-[#E58B23] transition-colors">
-                  FAQs & Assistance
+                <Link href="/faqs" className="hover:text-[#E58B23] transition-colors">
+                  FAQs &amp; Help
                 </Link>
               </li>
             </ul>
