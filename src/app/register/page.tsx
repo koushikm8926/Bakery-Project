@@ -264,11 +264,11 @@ export default function RegisterPage() {
                 />
                 <span>
                   I agree to Sandton Bakery&apos;s{" "}
-                  <Link href="/contact" className="text-[#8B1E2D] font-bold underline">
+                  <Link href="/terms" target="_blank" className="text-[#8B1E2D] font-bold underline">
                     Terms &amp; Conditions
                   </Link>{" "}
                   and{" "}
-                  <Link href="/contact" className="text-[#8B1E2D] font-bold underline">
+                  <Link href="/privacy-policy" target="_blank" className="text-[#8B1E2D] font-bold underline">
                     Privacy Policy
                   </Link>
                   .

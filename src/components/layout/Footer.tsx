@@ -208,13 +208,13 @@ export function Footer() {
           <p>© 2025 Sandton Bakery. All Rights Reserved.</p>
 
           <div className="flex items-center gap-6">
-            <Link href="/contact" className="hover:text-[#E58B23]">
+            <Link href="/privacy-policy" className="hover:text-[#E58B23]">
               Privacy Policy
             </Link>
-            <Link href="/contact" className="hover:text-[#E58B23]">
+            <Link href="/terms" className="hover:text-[#E58B23]">
               Terms & Conditions
             </Link>
-            <Link href="/contact" className="hover:text-[#E58B23]">
+            <Link href="/refund-policy" className="hover:text-[#E58B23]">
               Cancellation & Refund
             </Link>
           </div>
