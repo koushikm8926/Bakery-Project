@@ -51,9 +51,25 @@ interface CartContextType {
     deliverySlot: string;
     paymentMethod: string;
   }) => Order;
+  // True once cart, wishlist and orders have been loaded from localStorage
+  isHydrated: boolean;
   // Toast
   toastMessage: string | null;
   showToast: (msg: string) => void;
+}
+
+const COUPONS: Record<string, { type: "percent" | "flat"; value: number }> = {
+  BAKERY15: { type: "percent", value: 15 },
+  BAKERY20: { type: "percent", value: 15 },
+  FLAT100: { type: "flat", value: 100 },
+  SWEET100: { type: "flat", value: 100 },
+};
+
+function getCouponDiscount(code: string, subtotal: number): number {
+  const coupon = COUPONS[code];
+  if (!coupon || subtotal <= 0) return 0;
+  if (coupon.type === "percent") return Math.round((subtotal * coupon.value) / 100);
+  return Math.min(coupon.value, subtotal);
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -62,9 +78,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [wishlist, setWishlist] = useState<string[]>([]);
   const [couponCode, setCouponCode] = useState<string>("");
-  const [discount, setDiscount] = useState<number>(0);
   const [orders, setOrders] = useState<Order[]>([]);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   // Initialize with initial sample data from the UI mockup
   useEffect(() => {
@@ -135,24 +151,38 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     } catch {
       // Ignore during SSR
     }
+    setIsHydrated(true);
   }, []);
 
-  // Save to localStorage
+  // Save to localStorage. Wait until the saved data has been loaded so the
+  // initial empty state never overwrites it; after that, always save, even
+  // when the cart becomes empty, so removed items don't come back on reload.
   useEffect(() => {
-    if (cart.length > 0) {
+    if (!isHydrated) return;
+    try {
       localStorage.setItem("sandton_cart", JSON.stringify(cart));
+    } catch {
+      // Storage unavailable (private mode, quota) – keep working in memory
     }
-  }, [cart]);
+  }, [cart, isHydrated]);
 
   useEffect(() => {
-    localStorage.setItem("sandton_wishlist", JSON.stringify(wishlist));
-  }, [wishlist]);
+    if (!isHydrated) return;
+    try {
+      localStorage.setItem("sandton_wishlist", JSON.stringify(wishlist));
+    } catch {
+      // Storage unavailable
+    }
+  }, [wishlist, isHydrated]);
 
   useEffect(() => {
-    if (orders.length > 0) {
+    if (!isHydrated) return;
+    try {
       localStorage.setItem("sandton_orders", JSON.stringify(orders));
+    } catch {
+      // Storage unavailable
     }
-  }, [orders]);
+  }, [orders, isHydrated]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -195,7 +225,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const clearCart = () => {
     setCart([]);
-    localStorage.removeItem("sandton_cart");
+    setCouponCode("");
     showToast("Cart cleared");
   };
 
@@ -222,27 +252,28 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const deliveryCharge = cartSubtotal > 1500 || cartSubtotal === 0 ? 0 : 49;
 
+  // The discount is derived from the current subtotal on every render, so it
+  // stays correct when items or quantities change after the coupon is applied.
+  const discount = getCouponDiscount(couponCode, cartSubtotal);
+
   const applyCoupon = (code: string) => {
     const clean = code.trim().toUpperCase();
-    if (clean === "BAKERY15" || clean === "BAKERY20") {
-      setCouponCode(clean);
-      const disc = Math.round(cartSubtotal * 0.15);
-      setDiscount(disc);
-      showToast(`Coupon ${clean} applied! You saved ₹${disc}`);
-      return true;
-    } else if (clean === "FLAT100" || clean === "SWEET100") {
-      setCouponCode(clean);
-      setDiscount(100);
-      showToast("Coupon applied! ₹100 flat discount added.");
-      return true;
+    if (!(clean in COUPONS)) {
+      showToast("Invalid coupon code. Try BAKERY15 or FLAT100");
+      return false;
     }
-    showToast("Invalid coupon code. Try BAKERY15 or FLAT100");
-    return false;
+    setCouponCode(clean);
+    const coupon = COUPONS[clean];
+    showToast(
+      coupon.type === "percent"
+        ? `Coupon ${clean} applied! You saved ₹${getCouponDiscount(clean, cartSubtotal)}`
+        : `Coupon applied! ₹${coupon.value} flat discount added.`
+    );
+    return true;
   };
 
   const removeCoupon = () => {
     setCouponCode("");
-    setDiscount(0);
     showToast("Coupon removed");
   };
 
@@ -302,6 +333,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         totalAmount,
         orders,
         placeOrder,
+        isHydrated,
         toastMessage,
         showToast,
       }}

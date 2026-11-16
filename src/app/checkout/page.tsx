@@ -37,8 +37,16 @@ import {
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { cart, cartSubtotal, deliveryCharge, discount, totalAmount, cartCount, placeOrder } =
-    useCart();
+  const {
+    cart,
+    cartSubtotal,
+    deliveryCharge,
+    discount,
+    totalAmount,
+    cartCount,
+    placeOrder,
+    isHydrated,
+  } = useCart();
 
   // Address selection
   const [selectedAddress, setSelectedAddress] = useState<"home" | "office">("home");
@@ -93,6 +101,53 @@ export default function CheckoutPage() {
 
     setPlacedOrder(order);
   };
+
+  // Wait for the saved cart to load before deciding the cart is empty.
+  if (!isHydrated) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div
+          className="w-10 h-10 rounded-full border-4 border-[#EADBCE] border-t-[#D97706] animate-spin"
+          role="status"
+          aria-label="Loading checkout"
+        />
+      </div>
+    );
+  }
+
+  // Nothing to check out (unless we're showing the success popup for an order
+  // that was just placed, which empties the cart).
+  if (cart.length === 0 && !placedOrder) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center px-4 py-16">
+        <div className="max-w-md w-full text-center bg-white rounded-3xl border border-[#F0E5D8] shadow-sm p-8 space-y-4">
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-[#FFF6E5] border border-[#FDE68A] flex items-center justify-center">
+            <ShoppingBag className="w-8 h-8 text-[#D97706]" />
+          </div>
+          <h1 className="font-serif text-2xl font-bold text-[#2B170B]">Your cart is empty</h1>
+          <p className="text-sm text-[#5C4535]">
+            Add some freshly baked treats to your cart before checking out.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <Link
+              href="/shop"
+              className="w-full sm:w-auto bg-[#3A1407] hover:bg-[#250D04] text-white text-xs font-bold py-3 px-6 rounded-full flex items-center justify-center gap-2 transition-colors"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              <span>Browse the Shop</span>
+            </Link>
+            <Link
+              href="/track-order"
+              className="w-full sm:w-auto bg-white hover:bg-[#FAF5EE] text-[#4A2D1B] border border-[#EADBCE] text-xs font-bold py-3 px-6 rounded-full flex items-center justify-center gap-2 transition-colors"
+            >
+              <span>Track an Order</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-12 pb-16 relative">

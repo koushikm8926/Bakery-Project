@@ -19,14 +19,24 @@ import { useCart } from "@/context/CartContext";
 import { FeatureStrip } from "@/components/layout/FeatureStrip";
 
 export default function TrackOrderPage() {
-  const { orders } = useCart();
-  const [searchOrderId, setSearchOrderId] = useState("#SB784326");
-  const [phone, setPhone] = useState("+91 98450 50418");
+  const { orders, isHydrated } = useCart();
+  // What the user is typing vs. the ID they last searched for
+  const [searchOrderId, setSearchOrderId] = useState("");
+  const [submittedId, setSubmittedId] = useState("");
 
-  // Matched order or default fallback
-  const matchedOrder =
-    orders.find((o) => o.id.toLowerCase() === searchOrderId.trim().toLowerCase()) ||
-    orders[0];
+  // Order IDs are stored as "#SB123456"; accept them with or without the "#".
+  const normalizeId = (id: string) => id.trim().replace(/^#/, "").toUpperCase();
+
+  // Before any search, show the customer's most recent order. After a search,
+  // show only an exact match – never a different order.
+  const matchedOrder = submittedId
+    ? orders.find((o) => normalizeId(o.id) === normalizeId(submittedId))
+    : orders[0];
+
+  const handleTrack = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmittedId(searchOrderId.trim());
+  };
 
   const steps = [
     {
@@ -96,24 +106,79 @@ export default function TrackOrderPage() {
             </div>
 
             {/* Quick lookup box */}
-            <div className="w-full md:w-auto bg-white p-3 rounded-2xl border border-[#EADBCE] shadow-sm flex items-center gap-2">
+            <form
+              onSubmit={handleTrack}
+              className="w-full md:w-auto bg-white p-3 rounded-2xl border border-[#EADBCE] shadow-sm flex items-center gap-2"
+            >
               <input
                 type="text"
+                aria-label="Order ID"
                 placeholder="Enter Order ID (e.g. #SB784326)"
                 value={searchOrderId}
                 onChange={(e) => setSearchOrderId(e.target.value)}
                 className="px-3 py-2 text-xs rounded-xl bg-[#FAF5EE] border border-[#EADBCE] text-[#2B170B] font-bold uppercase"
               />
-              <button className="bg-[#3A1407] hover:bg-[#250D04] text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors">
+              <button
+                type="submit"
+                disabled={!searchOrderId.trim()}
+                className="bg-[#3A1407] hover:bg-[#250D04] disabled:opacity-50 text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors"
+              >
                 Track
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </section>
 
       {/* 2. LIVE TRACKING DETAILS */}
       <section className="max-w-5xl mx-auto px-4 md:px-8">
+        {!isHydrated ? (
+          <div className="bg-white rounded-3xl border border-[#F0E5D8] shadow-sm p-12 flex justify-center">
+            <div
+              className="w-10 h-10 rounded-full border-4 border-[#EADBCE] border-t-[#D97706] animate-spin"
+              role="status"
+              aria-label="Loading order"
+            />
+          </div>
+        ) : !matchedOrder ? (
+          <div className="bg-white rounded-3xl border border-[#F0E5D8] shadow-sm p-8 md:p-12 text-center space-y-4">
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-[#FFF6E5] border border-[#FDE68A] flex items-center justify-center">
+              <Search className="w-8 h-8 text-[#D97706]" />
+            </div>
+            {submittedId ? (
+              <>
+                <h2 className="font-serif text-2xl font-bold text-[#2B170B]">Order not found</h2>
+                <p className="text-sm text-[#5C4535] max-w-md mx-auto">
+                  We couldn&apos;t find an order with the ID{" "}
+                  <strong className="text-[#8B1E2D]">{submittedId.toUpperCase()}</strong>. Please
+                  check the ID in your confirmation message and try again, or call us for help.
+                </p>
+              </>
+            ) : (
+              <>
+                <h2 className="font-serif text-2xl font-bold text-[#2B170B]">No orders yet</h2>
+                <p className="text-sm text-[#5C4535] max-w-md mx-auto">
+                  Enter your order ID above to track it, or place your first order from our shop.
+                </p>
+              </>
+            )}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+              <Link
+                href="/shop"
+                className="w-full sm:w-auto bg-[#3A1407] hover:bg-[#250D04] text-white text-xs font-bold py-3 px-6 rounded-full transition-colors"
+              >
+                Browse the Shop
+              </Link>
+              <a
+                href="tel:+919845050418"
+                className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-6 py-3 rounded-full border border-[#EADBCE] text-xs font-semibold text-[#2B170B] hover:bg-[#FAF5EE]"
+              >
+                <Phone className="w-3.5 h-3.5 text-[#D97706]" />
+                <span>Call Bakery</span>
+              </a>
+            </div>
+          </div>
+        ) : (
         <div className="bg-white rounded-3xl border border-[#F0E5D8] shadow-sm p-6 md:p-8 space-y-8">
           {/* Status Header */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-[#F0E5D8]">
@@ -218,6 +283,7 @@ export default function TrackOrderPage() {
             </div>
           </div>
         </div>
+        )}
       </section>
 
       {/* 3. FEATURE STRIP */}
