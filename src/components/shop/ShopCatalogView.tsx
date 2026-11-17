@@ -126,7 +126,7 @@ export function ShopCatalogView() {
                 <h4 className="font-serif text-sm font-bold text-[#2B170B]">
                   Chocolate Truffle Cake
                 </h4>
-                <p className="text-xs text-[#8B1E2D] font-bold">From ₹699</p>
+                <p className="text-xs text-[#8B1E2D] font-bold">From R699</p>
               </div>
             </div>
           </div>
@@ -222,7 +222,7 @@ export function ShopCatalogView() {
             <div className="space-y-3 pt-4 border-t border-[#F0E5D8]">
               <h4 className="text-xs font-bold text-[#2B170B] uppercase tracking-wider flex items-center justify-between">
                 <span>Price Range</span>
-                <span className="text-[#8B1E2D] font-bold">₹0 - ₹{maxPrice}</span>
+                <span className="text-[#8B1E2D] font-bold">R0 - R{maxPrice}</span>
               </h4>
               <input
                 type="range"
@@ -234,8 +234,8 @@ export function ShopCatalogView() {
                 className="w-full accent-[#8B1E2D] cursor-pointer"
               />
               <div className="flex items-center justify-between text-[11px] text-[#8C7A6B]">
-                <span>₹100</span>
-                <span>₹1,500</span>
+                <span>R100</span>
+                <span>R1,500</span>
               </div>
             </div>
 

@@ -226,7 +226,7 @@ export default function AccountPage() {
                               </div>
                               <p className="text-xs text-[#8C7A6B] mt-0.5">
                                 {order.items.length} {order.items.length === 1 ? "Item" : "Items"} &bull;{" "}
-                                <strong className="text-[#2B170B]">₹{order.total}</strong>
+                                <strong className="text-[#2B170B]">R{order.total}</strong>
                               </p>
                               <p className="text-[11px] text-[#9E8B7C] flex items-center gap-1 mt-0.5">
                                 <Clock className="w-3 h-3" />
@@ -346,7 +346,7 @@ export default function AccountPage() {
                         <h4 className="font-serif text-xs font-bold text-[#2B170B] truncate">
                           {p.name}
                         </h4>
-                        <p className="text-xs font-bold text-[#8B1E2D]">₹{p.price}</p>
+                        <p className="text-xs font-bold text-[#8B1E2D]">R{p.price}</p>
                         <div className="flex gap-2">
                           <button
                             onClick={() => addToCart(p, 1)}
@@ -397,7 +397,7 @@ export default function AccountPage() {
                         <span className="font-serif font-bold text-sm text-[#2B170B]">
                           Order ID: {o.id}
                         </span>
-                        <span className="text-xs font-bold text-[#8B1E2D]">₹{o.total}</span>
+                        <span className="text-xs font-bold text-[#8B1E2D]">R{o.total}</span>
                       </div>
                       <p className="text-xs text-[#5C4535]">Delivery To: {o.address}</p>
                       <p className="text-[11px] text-[#8C7A6B]">

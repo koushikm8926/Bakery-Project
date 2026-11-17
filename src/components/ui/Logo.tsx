@@ -4,46 +4,47 @@ import Image from "next/image";
 
 interface LogoProps {
   className?: string;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
+  showText?: boolean;
 }
 
-export function Logo({ className = "", size = "md" }: LogoProps) {
-  const sizeMap = {
-    sm: "h-10 w-auto",
-    md: "h-14 w-auto",
-    lg: "h-20 w-auto",
+export function Logo({ className = "", size = "md", showText = false }: LogoProps) {
+  const sizeConfig = {
+    sm: { dimension: 44, containerClass: "w-11 h-11" },
+    md: { dimension: 64, containerClass: "w-14 h-14 sm:w-16 sm:h-16" },
+    lg: { dimension: 88, containerClass: "w-20 h-20 sm:w-24 sm:h-24" },
+    xl: { dimension: 120, containerClass: "w-28 h-28 sm:w-32 sm:h-32" },
   };
 
+  const { dimension, containerClass } = sizeConfig[size] || sizeConfig.md;
+
   return (
-    <Link href="/" className={`inline-flex items-center gap-2 group ${className}`}>
-      <div className="relative flex items-center justify-center">
-        {/* If cropped image exists, render it with fallback */}
-        <div className="flex items-center gap-2.5">
-          <div className="w-12 h-12 rounded-full border-2 border-[#E58B23] bg-[#FFF8EE] flex flex-col items-center justify-center p-1 shadow-sm group-hover:scale-105 transition-transform">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#8B1E2D"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-5 h-5"
-            >
-              <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z" />
-              <line x1="6" y1="17" x2="18" y2="17" />
-            </svg>
-            <div className="w-5 h-0.5 bg-[#E58B23] rounded-full mt-0.5"></div>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-serif text-2xl font-black tracking-tight text-[#3A1407] leading-none">
-              Sandton
-            </span>
-            <span className="font-serif text-[11px] uppercase tracking-[0.25em] text-[#C2410C] font-bold leading-none mt-1">
-              Bakery
-            </span>
-          </div>
-        </div>
+    <Link
+      href="/"
+      className={`inline-flex items-center gap-2.5 group transition-transform active:scale-95 ${className}`}
+      aria-label="Sandton Bakery Home"
+    >
+      <div className={`relative ${containerClass} shrink-0 group-hover:scale-105 transition-transform duration-200 drop-shadow-xs`}>
+        <Image
+          src="/images/logo.png"
+          alt="Sandton Bakery"
+          width={dimension}
+          height={dimension}
+          priority
+          className="w-full h-full object-contain"
+        />
       </div>
+
+      {showText && (
+        <div className="flex flex-col">
+          <span className="font-serif text-2xl font-black tracking-tight text-[#3A1407] leading-none">
+            Sandton
+          </span>
+          <span className="font-serif text-[11px] uppercase tracking-[0.25em] text-[#C2410C] font-bold leading-none mt-1">
+            Bakery
+          </span>
+        </div>
+      )}
     </Link>
   );
 }

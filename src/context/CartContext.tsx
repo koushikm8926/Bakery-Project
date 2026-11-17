@@ -266,8 +266,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const coupon = COUPONS[clean];
     showToast(
       coupon.type === "percent"
-        ? `Coupon ${clean} applied! You saved ₹${getCouponDiscount(clean, cartSubtotal)}`
-        : `Coupon applied! ₹${coupon.value} flat discount added.`
+        ? `Coupon ${clean} applied! You saved R${getCouponDiscount(clean, cartSubtotal)}`
+        : `Coupon applied! R${coupon.value} flat discount added.`
     );
     return true;
   };

@@ -39,7 +39,7 @@ const sections: LegalSection[] = [
     heading: "Orders & Pricing",
     body: (
       <ul>
-        <li>All prices are in Indian Rupees (₹) and include applicable taxes unless stated.</li>
+        <li>All prices are in South African Rand (ZAR / R) and include applicable taxes unless stated.</li>
         <li>
           An order is confirmed only after payment succeeds and you receive a confirmation
           message.

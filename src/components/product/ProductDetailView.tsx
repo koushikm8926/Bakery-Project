@@ -243,11 +243,11 @@ export function ProductDetailView({ product }: { product: Product }) {
           <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-[#FAF5EE] border border-[#EADBCE]">
             <div className="flex items-baseline gap-3">
               <span className="text-3xl font-bold text-[#2B170B]">
-                ₹{calculatedPrice}
+                R{calculatedPrice}
               </span>
               {calculatedOriginalPrice && (
                 <span className="text-base text-[#9E8B7C] line-through">
-                  ₹{calculatedOriginalPrice}
+                  R{calculatedOriginalPrice}
                 </span>
               )}
               {discountPercentage && (
@@ -614,7 +614,7 @@ export function ProductDetailView({ product }: { product: Product }) {
                       {p.name}
                     </h4>
                   </Link>
-                  <p className="text-xs font-bold text-[#8B1E2D]">₹{p.price}</p>
+                  <p className="text-xs font-bold text-[#8B1E2D]">R{p.price}</p>
                   <button
                     onClick={() => addToCart(p, 1)}
                     className="w-full bg-[#3A1407] hover:bg-[#250D04] text-white text-[11px] font-bold py-1.5 rounded-lg transition-colors"

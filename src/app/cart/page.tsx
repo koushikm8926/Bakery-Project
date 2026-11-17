@@ -165,7 +165,7 @@ export default function CartPage() {
                       {/* Unit Price */}
                       <div className="text-center sm:text-right hidden sm:block">
                         <span className="text-sm font-bold text-[#2B170B]">
-                          ₹{itemUnitPrice}
+                          R{itemUnitPrice}
                         </span>
                       </div>
 
@@ -191,7 +191,7 @@ export default function CartPage() {
                       {/* Item Total & Remove */}
                       <div className="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto">
                         <span className="text-sm font-bold text-[#8B1E2D]">
-                          ₹{itemTotalPrice}
+                          R{itemTotalPrice}
                         </span>
 
                         <button
@@ -217,7 +217,7 @@ export default function CartPage() {
               <div className="space-y-3 text-sm">
                 <div className="flex items-center justify-between text-[#5C4535]">
                   <span>Subtotal ({cartCount} Items)</span>
-                  <span className="font-bold text-[#2B170B]">₹{cartSubtotal}</span>
+                  <span className="font-bold text-[#2B170B]">R{cartSubtotal}</span>
                 </div>
 
                 <div className="flex items-center justify-between text-[#5C4535]">
@@ -229,7 +229,7 @@ export default function CartPage() {
                     {deliveryCharge === 0 ? (
                       <span className="text-emerald-700">FREE</span>
                     ) : (
-                      `₹${deliveryCharge}`
+                      `R${deliveryCharge}`
                     )}
                   </span>
                 </div>
@@ -237,7 +237,7 @@ export default function CartPage() {
                 {discount > 0 && (
                   <div className="flex items-center justify-between text-emerald-700 font-medium">
                     <span>Coupon Discount ({couponCode})</span>
-                    <span>-₹{discount}</span>
+                    <span>-R${discount}</span>
                   </div>
                 )}
               </div>
@@ -297,7 +297,7 @@ export default function CartPage() {
                     Total Amount
                   </span>
                   <span className="text-2xl font-bold text-[#8B1E2D]">
-                    ₹{totalAmount}
+                    R{totalAmount}
                   </span>
                 </div>
                 <p className="text-[11px] text-[#8C7A6B]">Inclusive of all taxes</p>
@@ -373,7 +373,7 @@ export default function CartPage() {
                       {p.name}
                     </h4>
                   </Link>
-                  <p className="text-xs font-bold text-[#8B1E2D]">₹{p.price}</p>
+                  <p className="text-xs font-bold text-[#8B1E2D]">R{p.price}</p>
                   <button
                     onClick={() => addToCart(p, 1)}
                     className="w-full bg-[#FAF5EE] hover:bg-[#3A1407] text-[#2B170B] hover:text-white text-[11px] font-bold py-1.5 rounded-lg border border-[#EADBCE] transition-all"

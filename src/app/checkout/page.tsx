@@ -537,7 +537,7 @@ export default function CheckoutPage() {
                       </p>
                     </div>
                     <span className="text-xs font-bold text-[#2B170B]">
-                      ₹{unitPrice * item.quantity}
+                      R{unitPrice * item.quantity}
                     </span>
                   </div>
                 );
@@ -548,18 +548,18 @@ export default function CheckoutPage() {
             <div className="space-y-2.5 text-xs pt-4 border-t border-[#F0E5D8]">
               <div className="flex items-center justify-between text-[#5C4535]">
                 <span>Subtotal</span>
-                <span className="font-bold text-[#2B170B]">₹{cartSubtotal}</span>
+                <span className="font-bold text-[#2B170B]">R{cartSubtotal}</span>
               </div>
               <div className="flex items-center justify-between text-[#5C4535]">
                 <span>Delivery Charges</span>
                 <span className="font-bold text-[#2B170B]">
-                  {deliveryCharge === 0 ? <span className="text-emerald-700">FREE</span> : `₹${deliveryCharge}`}
+                  {deliveryCharge === 0 ? <span className="text-emerald-700">FREE</span> : `R${deliveryCharge}`}
                 </span>
               </div>
               {discount > 0 && (
                 <div className="flex items-center justify-between text-emerald-700 font-bold">
                   <span>Coupon Discount</span>
-                  <span>-₹{discount}</span>
+                  <span>-R{discount}</span>
                 </div>
               )}
             </div>
@@ -568,7 +568,7 @@ export default function CheckoutPage() {
             <div className="pt-4 border-t border-[#F0E5D8] space-y-1">
               <div className="flex items-baseline justify-between">
                 <span className="font-serif font-bold text-base text-[#2B170B]">Total Amount</span>
-                <span className="text-2xl font-bold text-[#8B1E2D]">₹{totalAmount}</span>
+                <span className="text-2xl font-bold text-[#8B1E2D]">R{totalAmount}</span>
               </div>
               <p className="text-[11px] text-[#8C7A6B]">Inclusive of all taxes</p>
             </div>
@@ -580,7 +580,7 @@ export default function CheckoutPage() {
               className="w-full bg-[#3A1407] hover:bg-[#250D04] disabled:opacity-50 text-white font-bold text-sm py-4 px-6 rounded-2xl flex items-center justify-center gap-2 transition-all shadow-lg active:scale-98"
             >
               <Lock className="w-4 h-4 text-[#FBBF24]" />
-              <span>Place Order &amp; Pay ₹{totalAmount} &rarr;</span>
+              <span>Place Order &amp; Pay R{totalAmount} &rarr;</span>
             </button>
 
             {/* Security Promise */}

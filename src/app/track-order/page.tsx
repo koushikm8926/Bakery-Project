@@ -276,7 +276,7 @@ export default function TrackOrderPage() {
                   Payment: <strong>{matchedOrder?.paymentMethod || "UPI (Google Pay)"}</strong>
                 </p>
                 <p>
-                  Total Paid: <strong className="text-[#8B1E2D]">₹{matchedOrder?.total || 2596}</strong>
+                  Total Paid: <strong className="text-[#8B1E2D]">R{matchedOrder?.total || 2596}</strong>
                 </p>
                 <p className="text-[#8C7A6B]">Order contains 100% fresh handcrafted treats.</p>
               </div>

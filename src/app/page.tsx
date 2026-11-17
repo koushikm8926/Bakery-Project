@@ -600,7 +600,7 @@ export default function HomePage() {
                 Premium assortments for every occasion
               </p>
               <span className="inline-block mt-3 text-xs font-bold text-[#8B1E2D]">
-                From ₹249
+                From R249
               </span>
             </div>
             <img

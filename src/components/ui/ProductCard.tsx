@@ -85,11 +85,11 @@ export function ProductCard({ product, showBadge }: ProductCardProps) {
           <div className="flex items-baseline justify-between">
             <div className="flex items-baseline gap-1.5">
               <span className="text-base font-bold text-[#2B170B]">
-                ₹{product.price}
+                R{product.price}
               </span>
               {product.originalPrice && (
                 <span className="text-xs text-[#9E8B7C] line-through">
-                  ₹{product.originalPrice}
+                  R{product.originalPrice}
                 </span>
               )}
             </div>

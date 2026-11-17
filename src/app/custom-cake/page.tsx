@@ -288,7 +288,7 @@ export default function CustomCakePage() {
             <div className="p-4 bg-[#FFFBF5] rounded-2xl border border-[#FDE68A] space-y-1">
               <span className="text-[11px] text-[#8C7A6B] block">Starting Estimate</span>
               <span className="font-serif text-3xl font-bold text-[#8B1E2D]">
-                ₹{getEstimatedPrice()}
+                R{getEstimatedPrice()}
               </span>
               <span className="text-[10px] text-[#785437] block mt-1">
                 Includes wooden cake knife, sparkler candles, and signature presentation box.

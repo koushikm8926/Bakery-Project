@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import {
   InstagramIcon,
@@ -16,19 +17,20 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[#3E2114]">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-11 h-11 rounded-full border-2 border-[#E58B23] bg-[#3B190B] flex items-center justify-center p-1 text-[#E58B23]">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="w-5 h-5"
-                >
-                  <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z" />
-                  <line x1="6" y1="17" x2="18" y2="17" />
-                </svg>
-              </div>
+            <div className="flex items-center gap-3">
+              <Link
+                href="/"
+                className="w-14 h-14 rounded-full bg-white p-1 shadow-md shrink-0 flex items-center justify-center hover:scale-105 transition-transform"
+                aria-label="Sandton Bakery Home"
+              >
+                <Image
+                  src="/images/logo.png"
+                  alt="Sandton Bakery Official Logo"
+                  width={54}
+                  height={54}
+                  className="w-full h-full object-contain"
+                />
+              </Link>
               <div>
                 <h3 className="font-serif text-2xl font-bold text-white tracking-wide">
                   Sandton Bakery

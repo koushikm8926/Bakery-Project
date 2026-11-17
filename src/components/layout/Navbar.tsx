@@ -93,7 +93,7 @@ export function Navbar() {
                     <p className="text-[11px] text-[#8C7A6B] capitalize">{item.category}</p>
                   </div>
                   <span className="text-[13px] font-bold text-[#8B1E2D]">
-                    ₹{item.price}
+                    R{item.price}
                   </span>
                 </Link>
               ))}

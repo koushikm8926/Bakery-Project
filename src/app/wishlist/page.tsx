@@ -121,11 +121,11 @@ export default function WishlistPage() {
                   <div className="pt-2 border-t border-[#F5EDE3] space-y-2">
                     <div className="flex items-baseline justify-between">
                       <span className="text-base font-bold text-[#2B170B]">
-                        ₹{product.price}
+                        R{product.price}
                       </span>
                       {product.originalPrice && (
                         <span className="text-xs text-[#9E8B7C] line-through">
-                          ₹{product.originalPrice}
+                          R{product.originalPrice}
                         </span>
                       )}
                     </div>
